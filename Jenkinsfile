@@ -21,11 +21,12 @@ pipeline {
             }
         }
 
-
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests...'
-                sh 'mvn test'  
+                withMaven(maven: 'Maven') {  // Ensure Maven is used here
+                    sh 'mvn test'
+                }
             }
             post {
                 always {
@@ -39,14 +40,18 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Running code analysis with SonarQube...'
-                sh 'mvn sonar:sonar'  
+                withMaven(maven: 'Maven') { 
+                    sh 'mvn sonar:sonar'  
+                }
             }
         }
 
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan with OWASP Dependency Check...'
-                sh 'mvn dependency-check:check'  
+                withMaven(maven: 'Maven') {
+                    sh 'mvn dependency-check:check'  
+                }
             }
             post {
                 always {
