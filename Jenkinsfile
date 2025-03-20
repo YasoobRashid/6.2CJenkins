@@ -24,7 +24,7 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests...'
-                withMaven(maven: 'Maven') {  // Ensure Maven is used here
+                withMaven(maven: 'Maven') { 
                     sh 'mvn test'
                 }
             }
