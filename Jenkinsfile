@@ -40,11 +40,14 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Running code analysis with SonarQube...'
-                withSonarQubeEnv('SonarQube-Local') {  
-                    sh 'mvn sonar:sonar'
+                withMaven(maven: 'Maven') {  
+                    withSonarQubeEnv('SonarQube-Local') {  
+                        sh 'mvn sonar:sonar'  
+                    }
                 }
             }
         }
+
 
         stage('Security Scan') {
             steps {
