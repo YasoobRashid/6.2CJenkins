@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4  
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y maven  # Install Maven for Java projects
+
+      - name: Build Project
+        run: mvn clean package  
+
+      - name: Run Tests
+        run: mvn test  
+
+  deploy:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: build  
+    steps:
+      - name: Checkout Code
+        uses: actions/
