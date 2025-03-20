@@ -16,7 +16,9 @@ pipeline {
             steps {
                 echo 'Building the project using Jenkins-configured Maven...'
                 withMaven(maven: 'Maven') {
-                    sh 'mvn clean package'
+                    dir('.') {  
+                        sh 'mvn clean package'
+                    }
                 }
             }
         }
