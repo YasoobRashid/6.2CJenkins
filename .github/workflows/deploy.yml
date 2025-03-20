@@ -33,4 +33,18 @@ jobs:
     needs: build  
     steps:
       - name: Checkout Code
-        uses: actions/
+        uses: actions/checkout@v4
+
+      - name: Deploy to Staging (Mocked)
+        run: echo "Deployment to Staging completed"  
+
+  production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: deploy  
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Production (Mocked)
+        run: echo "Production deployment successful!" 
