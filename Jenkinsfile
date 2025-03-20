@@ -40,8 +40,8 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Running code analysis with SonarQube...'
-                withMaven(maven: 'Maven') { 
-                    sh 'mvn sonar:sonar'  
+                withSonarQubeEnv('SonarQube-Local') {  
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
