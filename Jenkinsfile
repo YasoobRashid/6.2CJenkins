@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         EMAIL_RECIPIENTS = 'yasoobjavaid1@gmail.com'  
+        TESTING_ENVIRONMENT = "Testing_Env"
+        PRODUCTION_ENVIRONMENT = "yasoob"  
     }
 
     stages {
