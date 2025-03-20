@@ -16,12 +16,11 @@ pipeline {
             steps {
                 echo 'Building the project using Jenkins-configured Maven...'
                 withMaven(maven: 'Maven') {
-                    dir('6.2CJenkins') {  
-                        sh 'mvn clean package'
-                    }
+                    sh 'mvn clean package' 
                 }
             }
         }
+
 
         stage('Unit and Integration Tests') {
             steps {
