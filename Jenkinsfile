@@ -62,22 +62,26 @@ pipeline {
 
         stage('Deploy to Staging') {
             steps {
-                echo "Deploying the application to staging: ${TESTING_ENVIRONMENT}"
+                echo 'Deploying to staging server...'
+                sh './deploy_staging.sh'  
             }
         }
 
         stage('Integration Tests on Staging') {
             steps {
-                echo "Running integration tests on staging"
+                echo 'Running integration tests on staging...'
+                sh 'pytest tests/integration'  
             }
         }
 
         stage('Deploy to Production') {
             steps {
-                echo "Deploying application to production: ${PRODUCTION_ENVIRONMENT}"
+                echo 'Deploying to production server...'
+                sh './deploy_production.sh'  
             }
         }
     }
+
 
     post {
         success {
